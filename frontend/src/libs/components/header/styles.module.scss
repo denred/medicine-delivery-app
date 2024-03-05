@@ -1,0 +1,42 @@
+@import "src/assets/css/vars.scss";
+
+.container {
+  background-color: $scroll-bar-thumb;
+  color: $white;
+  padding: 1rem;
+  text-align: center;
+  min-height: 24px;
+  width: 100%;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin: 0 1rem;
+  position: relative;
+  cursor: pointer;
+  line-height: 24px;
+  font-family: $font-family;
+}
+
+li:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: -1.25rem;
+  color: $white;
+}
+
+li:hover {
+  text-decoration: underline;
+}
