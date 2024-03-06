@@ -11,5 +11,8 @@
   },
   "keywords": [],
   "author": "Denis Redkin",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "joi": "^17.12.2"
+  }
 }
