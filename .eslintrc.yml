@@ -82,10 +82,6 @@ rules:
     - error
   import/no-unresolved:
     - off
-  import/extensions:
-    - error
-    - always
-    - ignorePackages: true
   import/newline-after-import:
     - error
     - count: 1

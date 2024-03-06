@@ -1,0 +1,73 @@
+@import "src/assets/css/vars.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 210px;
+  height: calc(100% - 20px);
+  margin: 10px;
+  padding: 19px 18px;
+  overflow-y: auto;
+  background-color: $white;
+  border-radius: 10px;
+  box-shadow: $shadow-light;
+}
+
+.collapsed {
+  width: 60px;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  position: relative;
+
+  &:not(:first-child) {
+    margin-top: 12px;
+  }
+}
+
+.item.active::after {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin-top: 9px;
+  background-color: $white-blue;
+  content: "";
+}
+
+.btn {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 16px 0;
+  color: $grey;
+  font-weight: $font-weight-bold;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: $black-light-transparent;
+}
+
+.btn.active {
+  color: $blue-dark;
+  background-color: rgba($blue-light, 0.2);
+}
+
+.link {
+  padding: 15px;
+  color: $white;
+  font-size: 16px;
+  font-family: $font-family;
+  background-color: $red-dark;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 40%);
+  cursor: pointer;
+}

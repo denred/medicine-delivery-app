@@ -1,0 +1,23 @@
+@import "src/assets/css/vars.scss";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  border: 2px solid $black;
+  background-color: $body-background;
+  color: $black;
+  padding: 10px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button {
+  background-color: $body-background;
+  font-weight: $font-weight-bold;
+}
+
+.filled {
+  background-color: $grey-light;
+}

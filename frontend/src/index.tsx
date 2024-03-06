@@ -1,12 +1,12 @@
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
-
-import { Notification } from '~/libs/components/components.js';
-import { Shop } from './pages/pages.js';
+import 'modern-normalize/modern-normalize.css';
+import '~/assets/css/styles.scss';
+import { Notification, Router } from '~/libs/components/components.js';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Shop />
+    <Router />
     <Notification />
   </StrictMode>,
 );

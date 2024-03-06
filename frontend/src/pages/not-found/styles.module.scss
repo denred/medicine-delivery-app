@@ -1,0 +1,29 @@
+@import "src/assets/css/vars.scss";
+
+.page {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: $blue-dark;
+  // background-image: url("../../assets/img/auth-page-bg.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.code {
+  color: $white;
+  font-weight: $font-weight-extrabold;
+  font-size: 220px;
+  font-family: $font-family;
+}
+
+.message {
+  margin-bottom: 40px;
+  color: $white;
+  font-weight: $font-weight-bold;
+  font-size: 28px;
+  font-family: $font-family;
+}
