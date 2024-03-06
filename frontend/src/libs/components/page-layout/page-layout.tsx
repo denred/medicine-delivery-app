@@ -15,10 +15,6 @@ const PageLayout: FC<Properties> = ({ children }: Properties) => {
         <Header />
       </div>
 
-      <div className={styles.sidebar}>
-        <Sidebar />
-      </div>
-
       <main className={styles.content}>
         <RouterOutlet />
         {children}

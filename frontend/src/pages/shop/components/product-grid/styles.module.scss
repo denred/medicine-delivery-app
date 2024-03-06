@@ -1,0 +1,14 @@
+@import "src/assets/css/vars.scss";
+
+.list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  width: 400px;
+  margin-bottom: 20px;
+}

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { getValidClassNames } from '~/libs/helpers/helpers';
 import styles from './styles.module.scss';
+import { Button } from '../button/button.js';
 
 type CategoryItemProps = {
   title: string;
@@ -19,9 +20,13 @@ const CategoryItem: FC<CategoryItemProps> = ({
         [styles.filled]: current,
       })}
     >
-      <button className={styles.button} onClick={onClick}>
-        {title}
-      </button>
+      <Button
+        className={getValidClassNames(styles.button, {
+          [styles.filled]: current,
+        })}
+        onClick={onClick}
+        label={title}
+      />
     </div>
   );
 };

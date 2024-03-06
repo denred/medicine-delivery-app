@@ -1,23 +1,8 @@
 @import "src/assets/css/vars.scss";
 
-.container {
+.list {
   display: flex;
   flex-direction: column;
-  width: 210px;
-  height: calc(100% - 20px);
-  margin: 10px;
-  padding: 19px 18px;
-  overflow-y: auto;
-  background-color: $white;
-  border-radius: 10px;
-  box-shadow: $shadow-light;
-}
-
-.collapsed {
-  width: 60px;
-}
-
-.list {
   margin: 0;
   padding: 0;
 }
@@ -70,4 +55,8 @@
   border-radius: 5px;
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 40%);
   cursor: pointer;
+}
+
+.header {
+  margin: 20px;
 }

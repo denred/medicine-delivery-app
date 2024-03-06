@@ -31,7 +31,11 @@ const mockProducts: Product[] = [
   },
 ];
 
-const Sidebar: FC = () => {
+type SidebarProps = {
+  className: string;
+};
+
+const Sidebar: FC<SidebarProps> = ({ className }: SidebarProps) => {
   const [currentMenuItem, setCurrentMenuItem] = useState<string>(
     mockProducts?.[0]?.id,
   );
@@ -57,7 +61,8 @@ const Sidebar: FC = () => {
   }, [mockProducts, handleMenuClick]);
 
   return (
-    <div className={styles.container}>
+    <div className={className}>
+      <h2 className={styles.header}>Shops:</h2>
       <ul className={styles.list}>{renderTabs()}</ul>
     </div>
   );

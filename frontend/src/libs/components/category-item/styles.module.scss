@@ -1,23 +1,24 @@
 @import "src/assets/css/vars.scss";
 
 .container {
+  border: 2px solid $black;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  border: 2px solid $black;
-  background-color: $body-background;
-  color: $black;
-  padding: 10px 30px;
   border-radius: 8px;
-  cursor: pointer;
 }
 
 .button {
-  background-color: $body-background;
+  width: 200px !important;
+  min-height: 80px !important;
+  background-color: $body-background !important;
+  color: $black !important;
+  padding: 10px 30px !important;
+  border-radius: 8px !important;
+  cursor: pointer;
   font-weight: $font-weight-bold;
 }
 
 .filled {
-  background-color: $grey-light;
+  background-color: $grey-light !important;
 }
