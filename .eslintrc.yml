@@ -44,7 +44,7 @@ rules:
     - error
   max-params:
     - error
-    - 3
+    - 4
   no-multiple-empty-lines:
     - error
     - max: 1

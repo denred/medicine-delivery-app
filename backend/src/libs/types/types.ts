@@ -1,1 +1,5 @@
-export { type ValidationSchema, type ValueOf } from 'shared/build/index.js';
+export {
+  type ErrorConstructor,
+  type ValidationSchema,
+  type ValueOf,
+} from 'shared/build/index.js';
