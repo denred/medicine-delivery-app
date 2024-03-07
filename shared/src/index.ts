@@ -9,9 +9,12 @@ export {
   HttpHeader,
   HttpMessage,
   type HttpMethod,
+  Method,
 } from './libs/packages/http/http.js';
 export { type ValueOf } from './libs/types/types.js';
 export {
   type ErrorConstructor,
+  type NullableProperties,
   type ValidationSchema,
 } from './libs/types/types.js';
+export { type ProductEntity } from './packages/products/products.js';

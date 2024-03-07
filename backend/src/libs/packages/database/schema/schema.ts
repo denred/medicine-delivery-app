@@ -1,4 +1,6 @@
-const schema = {};
+import { products } from './tables-schema.js';
+
+const schema = { products };
 
 type DatabaseSchema = typeof schema;
 

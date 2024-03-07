@@ -12,7 +12,10 @@
   "scripts": {
     "start": "nodemon --exec \"node --loader ts-paths-esm-loader --no-warnings\" src/index.ts",
     "lint:type": "npx tsc --noEmit",
-    "lint:js": "npx eslint \"src/**/*.ts\""
+    "lint:js": "npx eslint \"src/**/*.ts\"",
+    "migrate:generate": "drizzle-kit generate:pg --schema=./src/libs/packages/database/schema/tables-schema.ts --out=./src/libs/packages/database/generated-schema",
+    "migrate:dev": "node --loader ts-paths-esm-loader ./src/libs/packages/database/migrate-up.ts",
+    "migrate:prod": "node ./libs/packages/database/migrate-up.js"
   },
   "keywords": [],
   "author": "Denis Redkin",
@@ -26,6 +29,7 @@
     "drizzle-orm": "^0.29.5",
     "express": "^4.18.3",
     "express-joi-validation": "^5.0.1",
+    "pg": "^8.11.3",
     "pino": "^8.19.0",
     "pino-pretty": "^10.3.1",
     "postgres": "^3.4.3",
