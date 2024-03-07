@@ -107,6 +107,17 @@ class ProductController extends Controller {
 
     this.addRoute({
       path: ProductsApiPath.ROOT,
+      method: Method.POST,
+      handler: (request) =>
+        this.create(
+          request as ApiHandlerOptions<{
+            body: Omit<ProductEntity, 'id' | 'createdAt'>;
+          }>,
+        ),
+    });
+
+    this.addRoute({
+      path: ProductsApiPath.ROOT,
       method: Method.GET,
       handler: () => this.getAll(),
     });
@@ -182,6 +193,45 @@ class ProductController extends Controller {
     return {
       status: HttpCode.OK,
       payload: updated,
+    };
+  }
+
+  /**
+   * @swagger
+   * /products/:
+   *   post:
+   *     summary: Create a new product
+   *     tags:
+   *       - product
+   *     requestBody:
+   *       description: Product data to create
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/Product'
+   *     responses:
+   *       '201':
+   *         description: Product created successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ProductResponse'
+   *       '400':
+   *         description: Bad request
+   */
+  private async create(
+    options: ApiHandlerOptions<{
+      body: Omit<ProductEntity, 'id' | 'createdAt'>;
+    }>,
+  ): Promise<ApiHandlerResponse> {
+    const { body } = options;
+
+    const createdProduct = await this.productsService.create(body);
+
+    return {
+      status: HttpCode.CREATED,
+      payload: createdProduct,
     };
   }
 

@@ -8,6 +8,13 @@
       "when": 1709818859066,
       "tag": "0000_special_shaman",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1709842845401,
+      "tag": "0001_redundant_captain_marvel",
+      "breakpoints": true
     }
   ]
 }

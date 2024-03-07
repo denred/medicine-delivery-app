@@ -21,10 +21,10 @@ class ProductService implements IService {
   public async create(
     payload: Omit<ProductEntityT, 'id' | 'createdAt'>,
   ): Promise<ProductEntityT> {
-    const { vendorCode } = payload;
+    const { vendorCode, description, image, ...product } = payload;
 
     if (vendorCode) {
-      const existingProduct = await this.productRepository.find({ vendorCode });
+      const existingProduct = await this.productRepository.find(vendorCode);
 
       if (existingProduct.length > 0) {
         throw new HttpError({
@@ -34,7 +34,12 @@ class ProductService implements IService {
       }
     }
 
-    const [result] = await this.productRepository.create(payload);
+    const [result] = await this.productRepository.create({
+      vendorCode: vendorCode ?? null,
+      description: description ?? null,
+      image: image ?? null,
+      ...product,
+    });
 
     return ProductEntity.initialize(result).toObject();
   }

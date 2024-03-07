@@ -1,4 +1,4 @@
-import { and, eq, sql } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 
 import { type IRepository } from '~/libs/interfaces/interfaces.js';
 import {
@@ -37,7 +37,7 @@ class ProductRepository implements IRepository {
   }
 
   public async create(
-    entity: Omit<ProductEntity, 'id' | 'createdAt' | 'status'>,
+    entity: Omit<ProductsDatabaseModel, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<ProductsDatabaseModel[]> {
     const preparedQuery = this.db
       .driver()
@@ -75,25 +75,22 @@ class ProductRepository implements IRepository {
     );
   }
 
-  public find(
-    partial: Partial<ProductsDatabaseModel>,
-  ): Promise<ProductsDatabaseModel[]> {
-    const queries = Object.entries(partial).map(([key, value]) =>
-      eq(
-        this.productsSchema[key as keyof typeof partial],
-        value as NonNullable<typeof value>,
-      ),
-    );
-
-    const finalQuery = queries.length === 1 ? queries[0] : and(...queries);
-
+  public find(vendorCode: string): Promise<ProductsDatabaseModel[]> {
     return this.db
       .driver()
-      .query.products.findMany({
-        where: finalQuery,
-        with: { group: true },
-      })
-      .execute();
+      .select()
+      .from(this.productsSchema)
+      .where(eq(this.productsSchema.vendorCode, vendorCode));
+  }
+
+  public getAllProductsByCategory(
+    category: string,
+  ): Promise<ProductsDatabaseModel[]> {
+    return this.db
+      .driver()
+      .select()
+      .from(this.productsSchema)
+      .where(eq(this.productsSchema.category, category));
   }
 }
 

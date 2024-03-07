@@ -11,6 +11,7 @@ import express, {
   type Response,
 } from 'express';
 import { createValidator } from 'express-joi-validation';
+import swaggerUi from 'swagger-ui-express';
 
 import { type ValidationError } from '~/libs/exceptions/exceptions.js';
 
@@ -150,9 +151,14 @@ class ServerApp implements IServerApp {
         this.logger.info(
           `Generate swagger documentation for API ${it.version}`,
         );
-        this.app.use(cors());
+        this.app.use(
+          '/api/docs',
+          swaggerUi.serve,
+          swaggerUi.setup(it.generateDoc()),
+        );
       }),
     );
+    this.app.use(cors());
   }
 
   private initPlugins(): void {
@@ -161,18 +167,14 @@ class ServerApp implements IServerApp {
   }
 
   public initRoutes(): void {
-    for (const api of this.apis) {
-      for (const route of api.routes) {
-        this.addRoute(route);
-      }
-    }
-    this.addJoiErrorHandler();
+    const routers = this.apis.flatMap((it) => it.routes);
+
+    this.addRoutes(routers);
   }
 
   public async init(): Promise<void> {
     this.logger.info('Application initialization…');
     this.database.connect();
-    this.initServe();
     await this.initMiddlewares();
     this.initPlugins();
     this.initRoutes();
