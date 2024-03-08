@@ -1,3 +1,4 @@
+export { ServerErrorType } from './libs/enums/enums.js';
 export { type IConfig } from './libs/packages/config/config.js';
 export { HttpError } from './libs/packages/exceptions/exceptions.js';
 export {
@@ -15,6 +16,7 @@ export { type ValueOf } from './libs/types/types.js';
 export {
   type ErrorConstructor,
   type NullableProperties,
+  type ServerErrorDetail,
   type ValidationSchema,
 } from './libs/types/types.js';
 export { type ProductEntity } from './packages/products/products.js';

@@ -1,6 +1,7 @@
 const IconName = {
-  SHOP: 'Shop',
-  CART: 'Shopping Cart',
+  SHOP: 'shop',
+  CART: 'cart',
+  EYE: 'eye',
 } as const;
 
 export { IconName };

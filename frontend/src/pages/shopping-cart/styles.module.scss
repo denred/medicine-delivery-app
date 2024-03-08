@@ -2,7 +2,7 @@
 
 .container {
   display: grid;
-  grid-template-columns: 25% 75%;
+  grid-template-columns: 50% 50%;
   width: 100%;
 }
 
@@ -12,10 +12,10 @@
   background-color: $white;
   border-radius: 10px;
   box-shadow: $shadow-light;
-  height: 85vh;
+  height: 72vh;
 }
 
-.sidebar {
+.customerInfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@
   @extend .shared-styles;
 }
 
-.content {
+.cart {
   @extend .shared-styles;
   overflow: scroll;
 }

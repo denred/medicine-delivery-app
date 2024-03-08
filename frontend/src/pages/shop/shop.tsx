@@ -1,11 +1,11 @@
 import { FC, useCallback, useState } from 'react';
 import { Sidebar } from './components/sidebar/sidebar';
 import { ProductGrid } from './components/product-grid/product-grid';
-import styles from './styles.module.scss';
 import {
   useGetCategoriesQuery,
   useGetProductsByCategoryQuery,
 } from '~/libs/packages/slices/product-api-slice';
+import styles from './styles.module.scss';
 
 const Shop: FC = () => {
   const [currentId, setCurrentId] = useState<number>(1);
