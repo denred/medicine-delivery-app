@@ -5,3 +5,4 @@ export { Router, RouterOutlet } from './router/router.js';
 export { Button } from './button/button.js';
 export { Image } from './image/image.js';
 export { Icon } from './icon/icon.js';
+export { Form } from './form/form.js';

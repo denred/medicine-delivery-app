@@ -1,5 +1,5 @@
 const FormName = {
-  FULL_NAME: 'fullName',
+  FULL_NAME: 'name',
   EMAIL: 'email',
   PHONE: 'phone',
   ADDRESS: 'address',

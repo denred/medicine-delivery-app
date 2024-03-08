@@ -12,7 +12,7 @@
   background-color: $white;
   border-radius: 10px;
   box-shadow: $shadow-light;
-  height: 72vh;
+  height: 75vh;
 }
 
 .customerInfo {
@@ -27,4 +27,12 @@
 .cart {
   @extend .shared-styles;
   overflow: scroll;
+}
+
+.formWrapper {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px 60px 30px 50px;
+  background-color: $white;
+  border-radius: 8px;
 }
