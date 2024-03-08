@@ -12,6 +12,7 @@ export {
   type HttpMethod,
   Method,
 } from './libs/packages/http/http.js';
+export { type IStorage } from './libs/packages/storage/storage.js';
 export { type ValueOf } from './libs/types/types.js';
 export {
   type ErrorConstructor,
