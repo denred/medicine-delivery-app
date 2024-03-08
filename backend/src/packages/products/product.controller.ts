@@ -123,6 +123,12 @@ class ProductController extends Controller {
     });
 
     this.addRoute({
+      path: ProductsApiPath.CATEGORIES,
+      method: Method.GET,
+      handler: () => this.getCategories(),
+    });
+
+    this.addRoute({
       path: ProductsApiPath.$ID,
       method: Method.GET,
       handler: (request) =>
@@ -140,6 +146,17 @@ class ProductController extends Controller {
         this.delete(
           request as ApiHandlerOptions<{
             params: { id: number };
+          }>,
+        ),
+    });
+
+    this.addRoute({
+      path: ProductsApiPath.$CATEGORY,
+      method: Method.GET,
+      handler: (request) =>
+        this.getByCategory(
+          request as ApiHandlerOptions<{
+            params: { category: string };
           }>,
         ),
     });
@@ -322,6 +339,78 @@ class ProductController extends Controller {
     return {
       status: HttpCode.NO_CONTENT,
       payload: await this.productsService.delete(options.params.id),
+    };
+  }
+
+  /**
+   * @swagger
+   * /products/category/{category}:
+   *   get:
+   *     summary: Get products by category
+   *     tags:
+   *       - product
+   *     parameters:
+   *       - name: category
+   *         in: path
+   *         description: Category of products to retrieve
+   *         required: true
+   *         schema:
+   *           type: string
+   *     responses:
+   *       '200':
+   *         description: Products retrieved successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/ProductResponse'
+   *       '404':
+   *         description: Products not found for the given category
+   */
+  private async getByCategory(
+    options: ApiHandlerOptions<{
+      params: { category: string };
+    }>,
+  ): Promise<ApiHandlerResponse> {
+    return {
+      status: HttpCode.OK,
+      payload: await this.productsService.findByCategory(
+        options.params.category,
+      ),
+    };
+  }
+
+  /**
+   * @swagger
+   * /products/categories/:
+   *   get:
+   *     summary: Get all product categories
+   *     tags:
+   *       - product
+   *     responses:
+   *       '200':
+   *         description: List of product categories
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 type: object
+   *                 properties:
+   *                   id:
+   *                     type: number
+   *                     example: 1
+   *                   category:
+   *                     type: string
+   *                     example: drugs
+   *       '404':
+   *         description: No product categories found
+   */
+  private async getCategories(): Promise<ApiHandlerResponse> {
+    return {
+      status: HttpCode.OK,
+      payload: await this.productsService.getCategories(),
     };
   }
 }

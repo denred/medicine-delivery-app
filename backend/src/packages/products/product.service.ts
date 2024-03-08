@@ -73,6 +73,31 @@ class ProductService implements IService {
       ProductEntity.initialize(element).toObject(),
     );
   }
+
+  public async findByCategory(category: string): Promise<ProductEntityT[]> {
+    const result =
+      await this.productRepository.getAllProductsByCategory(category);
+
+    return result.map((element) =>
+      ProductEntity.initialize(element).toObject(),
+    );
+  }
+
+  public async getCategories(): Promise<{ id: number; category: string }[]> {
+    const categoriesSet = new Set<string>();
+    const result = await this.productRepository.findAll();
+
+    for (const { category } of result) {
+      categoriesSet.add(category);
+    }
+
+    const categoriesArray = [...categoriesSet];
+
+    return categoriesArray.map((category, index) => ({
+      id: index + 1,
+      category,
+    }));
+  }
 }
 
 export { ProductService };

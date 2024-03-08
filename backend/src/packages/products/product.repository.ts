@@ -32,7 +32,7 @@ class ProductRepository implements IRepository {
       .where(eq(this.productsSchema.id, id));
   }
 
-  public async findAll(): Promise<ProductsDatabaseModel[]> {
+  public findAll(): Promise<ProductsDatabaseModel[]> {
     return this.db.driver().select().from(this.productsSchema);
   }
 

@@ -1,50 +1,33 @@
 import { FC } from 'react';
-import image from 'src/assets/img/paracetamol.jpg';
 import { ProductCard } from '../product-card/product-card.js';
 import styles from './styles.module.scss';
+import {
+  Product,
+  useGetProductsQuery,
+} from '~/libs/packages/slices/product-api-slice.js';
+import { type FetchBaseQueryError } from '@reduxjs/toolkit/query';
+import { type SerializedError } from '@reduxjs/toolkit';
 
-type Product = {
-  id: string;
-  title: string;
-  src: string;
-  alt: string;
+type ProductGridProps = {
+  data?: Product[];
+  error?: FetchBaseQueryError | SerializedError;
+  isLoading: boolean;
 };
 
-const mocks: Product[] = [
-  {
-    id: '01',
-    title: 'Paracetamol',
-    src: image,
-    alt: 'Paracetamol',
-  },
-  {
-    id: '02',
-    title: 'Ibuprofen',
-    src: image,
-    alt: 'Ibuprofen',
-  },
-  {
-    id: '03',
-    title: 'Aspirin',
-    src: image,
-    alt: 'Aspirin',
-  },
-  {
-    id: '04',
-    title: 'Cough Syrup',
-    src: image,
-    alt: 'Cough Syrup',
-  },
-];
-
-const ProductGrid: FC = (): JSX.Element => (
-  <ul className={styles.list}>
-    {mocks.map(({ id, title, src, alt }) => (
-      <li key={id} className={styles.item}>
-        <ProductCard title={title} src={src} alt={alt} />
-      </li>
-    ))}
-  </ul>
-);
+const ProductGrid: FC<ProductGridProps> = ({
+  data,
+  error,
+  isLoading,
+}): JSX.Element => {
+  return (
+    <ul className={styles.list}>
+      {data?.map(({ id, category, title, image, description }) => (
+        <li key={id} className={styles.item}>
+          <ProductCard title={title} src={image} alt={description} />
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 export { ProductGrid };

@@ -1,64 +1,38 @@
-import { CategoryItem } from '~/libs/components/components.js';
-import { useCallback, useState } from '~/libs/hooks';
-import styles from './styles.module.scss';
 import { FC } from 'react';
+import { CategoryItem } from '~/libs/components/components.js';
+import { useCallback } from '~/libs/hooks';
+import styles from './styles.module.scss';
 
-type Product = {
-  id: string;
+type Category = {
+  id: number;
   category: string;
 };
 
-const mockProducts: Product[] = [
-  {
-    id: '01',
-    category: 'Drugs 24',
-  },
-  {
-    id: '02',
-    category: 'Pharmacy',
-  },
-  {
-    id: '03',
-    category: 'Pharmacy01',
-  },
-  {
-    id: '04',
-    category: 'Pharmacy02',
-  },
-  {
-    id: '05',
-    category: 'Pharmacy03',
-  },
-];
-
 type SidebarProps = {
   className: string;
+  currentId: number;
+  categories: Category[];
+  handleMenuClick: (id: number) => void;
 };
 
-const Sidebar: FC<SidebarProps> = ({ className }: SidebarProps) => {
-  const [currentMenuItem, setCurrentMenuItem] = useState<string>(
-    mockProducts?.[0]?.id,
-  );
-
-  const handleMenuClick = useCallback(
-    (id: string) => {
-      setCurrentMenuItem(id);
-    },
-    [currentMenuItem],
-  );
-
+const Sidebar: FC<SidebarProps> = ({
+  className,
+  handleMenuClick,
+  currentId,
+  categories,
+}: SidebarProps) => {
   const renderTabs = useCallback(() => {
-    return mockProducts.map(({ id, category }) => (
+    return categories.map(({ id, category }) => (
       <li className={styles.item} key={id}>
         <CategoryItem
           key={id}
           title={category}
           onClick={() => handleMenuClick(id)}
-          current={id === currentMenuItem}
+          current={id === currentId}
         />
       </li>
     ));
-  }, [mockProducts, handleMenuClick]);
+  }, [categories, handleMenuClick]);
 
   return (
     <div className={className}>
@@ -68,4 +42,4 @@ const Sidebar: FC<SidebarProps> = ({ className }: SidebarProps) => {
   );
 };
 
-export { Sidebar };
+export { Sidebar, type Category };
