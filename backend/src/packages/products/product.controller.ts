@@ -344,7 +344,7 @@ class ProductController extends Controller {
 
   /**
    * @swagger
-   * /products/category/{category}:
+   * /products/rank/{category}:
    *   get:
    *     summary: Get products by category
    *     tags:

@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Button, Image } from '~/libs/components/components.js';
-import styles from './styles.module.scss';
-import { useCallback, useShoppingCart } from '~/libs/hooks/index.js';
+import { useCallback } from '~/libs/hooks/index.js';
 import { OrderItem } from '~/libs/types';
+import styles from './styles.module.scss';
 
 type ProductCardProps = {
   src: string;
@@ -24,7 +24,7 @@ const ProductCard: FC<ProductCardProps> = ({
   }, [addToCart, product]);
 
   return (
-    <div className={styles.container}>
+    <li key={title} className={styles.container}>
       <Image className={styles.img} src={src} alt={alt} />
       <div className={styles.title}>{title}</div>
       <Button
@@ -33,7 +33,7 @@ const ProductCard: FC<ProductCardProps> = ({
         label={'Add to cart'}
         onClick={handleAddToCart}
       />
-    </div>
+    </li>
   );
 };
 

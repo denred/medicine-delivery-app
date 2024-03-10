@@ -17,6 +17,7 @@ type ProductCardProps = {
   price: number;
   quantity: number;
   handleRemoveItem: (id: number) => void;
+  handleChangeQuantity: (id: number, value: number) => void;
 };
 
 const ProductCard: FC<ProductCardProps> = ({
@@ -26,17 +27,9 @@ const ProductCard: FC<ProductCardProps> = ({
   price,
   quantity,
   handleRemoveItem,
+  handleChangeQuantity,
 }): JSX.Element => {
   const [count, setCount] = useState(quantity);
-  const { changeProductQuantity } = useShoppingCart();
-
-  const handleQuantityChange = useCallback((change: number) => {
-    setCount((prevCount) => Math.max(1, prevCount + change));
-  }, []);
-
-  useEffect(() => {
-    changeProductQuantity(id, count);
-  }, [count]);
 
   return (
     <li key={id} className={styles.container}>
@@ -55,15 +48,15 @@ const ProductCard: FC<ProductCardProps> = ({
           <Button
             className={styles.btn}
             size="sm"
-            onClick={() => handleQuantityChange(-1)}
+            onClick={() => handleChangeQuantity(id, quantity - 1)}
           >
             <Icon iconName={IconName.MINUS} />
           </Button>
-          <div className={styles.price}>{count}</div>
+          <div className={styles.price}>{quantity}</div>
           <Button
             className={styles.btn}
             size="sm"
-            onClick={() => handleQuantityChange(1)}
+            onClick={() => handleChangeQuantity(id, quantity + 1)}
           >
             <Icon iconName={IconName.PLUS} />
           </Button>

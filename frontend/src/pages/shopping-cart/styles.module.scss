@@ -12,7 +12,7 @@
   background-color: $white;
   border-radius: 10px;
   box-shadow: $shadow-light;
-  height: 75vh;
+  height: 85vh;
 }
 
 .customerInfo {
@@ -35,4 +35,12 @@
   padding: 30px 60px 30px 50px;
   background-color: $white;
   border-radius: 8px;
+}
+
+.totalPrice {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 20px;
+  font-weight: $font-weight-bold;
 }

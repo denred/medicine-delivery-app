@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { OrderItem, type OrderItem as Product } from '~/libs/types/index.js';
 import { useLocalStorage } from '../use-local-storage/use-local-storage.hook';
 import { StorageKey } from '~/libs/enums';
 
 const useShoppingCart = () => {
   const { getItem, setItem } = useLocalStorage<Product[]>(StorageKey.TOKEN, []);
-
   const [cart, setCart] = useState<Product[]>(getItem());
+  const [total, setTotal] = useState<number>(0);
+
+  const getTotalPrice = () =>
+    getCart().reduce(
+      (total, { price, quantity }) => total + price * quantity,
+      0,
+    );
 
   const updateCart = (newCart: Product[]): void => {
+    setTotal(getTotalPrice());
     setItem(newCart);
   };
 
@@ -72,6 +79,8 @@ const useShoppingCart = () => {
     clearCart,
     updateCart,
     getCart,
+    getTotalPrice,
+    total,
   };
 };
 

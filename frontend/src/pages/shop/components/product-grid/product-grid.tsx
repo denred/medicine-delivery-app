@@ -24,22 +24,20 @@ const ProductGrid: FC<ProductGridProps> = ({
   return (
     <ul className={styles.list}>
       {data?.map(({ id, category, title, image, description, price }) => (
-        <li key={id} className={styles.item}>
-          <ProductCard
-            title={title}
-            src={image}
-            alt={description}
-            addToCart={addToCart}
-            product={{
-              id,
-              name: title,
-              price,
-              totalPrice: price,
-              quantity: 1,
-              image,
-            }}
-          />
-        </li>
+        <ProductCard
+          title={title}
+          src={image}
+          alt={description}
+          addToCart={addToCart}
+          product={{
+            id,
+            name: title,
+            price,
+            totalPrice: price,
+            quantity: 1,
+            image,
+          }}
+        />
       ))}
     </ul>
   );

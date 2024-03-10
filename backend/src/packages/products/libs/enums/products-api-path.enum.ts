@@ -1,7 +1,7 @@
 const ProductsApiPath = {
   ROOT: '/',
   $ID: '/:id',
-  $CATEGORY: '/category/:category',
+  $CATEGORY: '/rank/:category',
   CATEGORIES: '/categories/',
 } as const;
 
