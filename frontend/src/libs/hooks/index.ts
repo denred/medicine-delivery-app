@@ -8,3 +8,4 @@ export {
 export { useAppForm } from './use-app-form/use-app-form.hook.js';
 export { useController as useFormController } from 'react-hook-form';
 export { useFormServerError } from './use-form-server-error/use-form-server-error.hook.js';
+export { useShoppingCart } from './use-shopping-cart/use-shopping-cart.hook.js';

@@ -8,3 +8,4 @@ export { type DeepPartial, type FieldValues } from 'react-hook-form';
 export { type FormField } from './form.type.js';
 export { type ServerErrorHandling } from './server-error-handling.type.js';
 export { type CustomerInfo } from './customer-info.type.js';
+export { type OrderItem } from './order-item.type.js';

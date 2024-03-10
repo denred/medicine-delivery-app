@@ -1,5 +1,5 @@
 const StorageKey = {
-  TOKEN: 'token',
+  TOKEN: 'orders',
 } as const;
 
 export { StorageKey };

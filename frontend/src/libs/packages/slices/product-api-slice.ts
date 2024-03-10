@@ -22,7 +22,8 @@ export const productsApiSlice = createApi({
       query: () => 'products/',
     }),
     getProductsByCategory: builder.query<Product[], string>({
-      query: (category) => `products/category/${category}`,
+      query: (category) =>
+        `products/rank/${category.length > 0 ? category : 'j'}`,
     }),
     getCategories: builder.query<Category[], void>({
       query: () => 'products/categories',

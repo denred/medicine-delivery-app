@@ -3,6 +3,7 @@ import joi from 'joi';
 import { getUserInfoForm } from './libs/fields.js';
 import { DEFAULT_VALUES } from './libs/constants';
 import { Form } from '~/libs/components/components.js';
+import { ProductGrid } from './components/product-grid/product-grid.js';
 import styles from './styles.module.scss';
 
 const ShoppingCart: FC = () => {
@@ -19,7 +20,9 @@ const ShoppingCart: FC = () => {
           />
         </div>
       </div>
-      <div className={styles.cart}>RIGHT</div>
+      <div className={styles.cart}>
+        <ProductGrid />
+      </div>
     </div>
   );
 };
