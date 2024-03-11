@@ -14,10 +14,16 @@ import { OrderItem } from '~/libs/types/order-item.type.js';
 import { CustomerInfo } from '~/libs/types/index.js';
 import { useMakeOrderMutation } from '~/libs/packages/slices/product-api-slice.js';
 import styles from './styles.module.scss';
+import { notification } from '~/libs/packages/notification/notification.js';
 
 const ShoppingCart: FC = () => {
-  const { getTotalPrice, removeFromCart, getCart, changeProductQuantity } =
-    useShoppingCart();
+  const {
+    getTotalPrice,
+    removeFromCart,
+    getCart,
+    changeProductQuantity,
+    clearCart,
+  } = useShoppingCart();
   const [totalPrice, setTotalPrice] = useState<number>(getTotalPrice());
   const [cartItems, setCartItems] = useState<OrderItem[]>(getCart());
   const [makeOrder] = useMakeOrderMutation();
@@ -43,10 +49,12 @@ const ShoppingCart: FC = () => {
     makeOrder({ customerInfo: formData, order: getCart() })
       .unwrap()
       .then(() => {
-        console.log('Data sent successfully');
+        clearCart();
+        setCartItems([]);
+        notification.success('Order create');
       })
       .catch((error) => {
-        console.error('Error sending data:', error);
+        notification.error('Error sending data');
       });
   }, []);
 

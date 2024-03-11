@@ -25,6 +25,7 @@ const ProductGrid: FC<ProductGridProps> = ({
     <ul className={styles.list}>
       {data?.map(({ id, category, title, image, description, price }) => (
         <ProductCard
+          key={id + category + title}
           title={title}
           src={image}
           alt={description}

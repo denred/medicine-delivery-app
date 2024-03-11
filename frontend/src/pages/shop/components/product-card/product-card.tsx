@@ -3,6 +3,7 @@ import { Button, Image } from '~/libs/components/components.js';
 import { useCallback } from '~/libs/hooks/index.js';
 import { OrderItem } from '~/libs/types';
 import styles from './styles.module.scss';
+import { notification } from '~/libs/packages/notification/notification';
 
 type ProductCardProps = {
   src: string;
@@ -21,6 +22,7 @@ const ProductCard: FC<ProductCardProps> = ({
 }: ProductCardProps): JSX.Element => {
   const handleAddToCart = useCallback(() => {
     addToCart(product);
+    notification.success('Product add to cart');
   }, [addToCart, product]);
 
   return (
