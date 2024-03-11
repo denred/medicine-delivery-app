@@ -10,6 +10,7 @@ import { type ILogger } from '~/libs/packages/logger/logger.js';
 import { type OrderService } from '../orders/orders.js';
 import { Method, ProductsApiPath } from './libs/enums/enums.js';
 import { type Order, type ProductEntity } from './libs/types/types.js';
+import { createOrderSchema } from './libs/validations/create-order-schema.validation.js';
 import { type ProductService } from './product.service.js';
 
 /**
@@ -172,6 +173,7 @@ class ProductController extends Controller {
     this.addRoute({
       path: ProductsApiPath.ORDER,
       method: Method.POST,
+      validation: { body: createOrderSchema },
       handler: (request) =>
         this.makeOrder(
           request as ApiHandlerOptions<{
@@ -463,7 +465,6 @@ class ProductController extends Controller {
     }>,
   ): Promise<ApiHandlerResponse> {
     const { body } = options;
-
     const createdOrder = await this.orderService.create(body);
 
     return {
