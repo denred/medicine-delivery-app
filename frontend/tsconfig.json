@@ -1,6 +1,11 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["src", "react-component.d.ts"],
+  "include": [
+    "src",
+    "react-component.d.ts",
+    "../shared/src/libs/types/order.type.ts",
+    "../shared/src/libs/types/customer-info.type.ts"
+  ],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "ESNext",

@@ -3,6 +3,7 @@ const ProductsApiPath = {
   $ID: '/:id',
   $CATEGORY: '/rank/:category',
   CATEGORIES: '/categories/',
+  ORDER: '/order',
 } as const;
 
 export { ProductsApiPath };

@@ -11,6 +11,8 @@ import {
   useCallback,
 } from '~/libs/hooks';
 import { OrderItem } from '~/libs/types/order-item.type.js';
+import { CustomerInfo } from '~/libs/types/index.js';
+import { useMakeOrderMutation } from '~/libs/packages/slices/product-api-slice.js';
 import styles from './styles.module.scss';
 
 const ShoppingCart: FC = () => {
@@ -18,22 +20,35 @@ const ShoppingCart: FC = () => {
     useShoppingCart();
   const [totalPrice, setTotalPrice] = useState<number>(getTotalPrice());
   const [cartItems, setCartItems] = useState<OrderItem[]>(getCart());
+  const [makeOrder] = useMakeOrderMutation();
 
   const handleChangeQuantity = useCallback(
     (id: number, change: number) => {
       changeProductQuantity(id, change);
+      setCartItems(getCart());
     },
     [changeProductQuantity],
   );
 
   const handleRemoveItem = useCallback((id: number) => {
     removeFromCart(id);
+    setCartItems(getCart());
   }, []);
 
   useEffect(() => {
     setTotalPrice(getTotalPrice());
-    setCartItems(getCart());
-  }, [getTotalPrice, getCart]);
+  }, [cartItems]);
+
+  const onSubmit = useCallback((formData: Omit<CustomerInfo, 'id'>) => {
+    makeOrder({ customerInfo: formData, order: getCart() })
+      .unwrap()
+      .then(() => {
+        console.log('Data sent successfully');
+      })
+      .catch((error) => {
+        console.error('Error sending data:', error);
+      });
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -41,7 +56,7 @@ const ShoppingCart: FC = () => {
         <div className={styles.formWrapper}>
           <Form
             defaultValues={DEFAULT_VALUES}
-            onSubmit={() => {}}
+            onSubmit={onSubmit}
             fields={getUserInfoForm}
             btnLabel={'Make order'}
             validationSchema={joi.object()}

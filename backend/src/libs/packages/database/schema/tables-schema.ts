@@ -1,4 +1,11 @@
-import { pgTable, real, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import {
+  integer,
+  pgTable,
+  real,
+  serial,
+  timestamp,
+  varchar,
+} from 'drizzle-orm/pg-core';
 
 const products = pgTable('products', {
   id: serial('id').primaryKey(),
@@ -12,4 +19,27 @@ const products = pgTable('products', {
   updatedAt: timestamp('updated_at').notNull().defaultNow(),
 });
 
-export { products };
+const orders = pgTable('orders', {
+  id: serial('id').primaryKey(),
+  phone: varchar('phone').notNull(),
+  email: varchar('email').notNull(),
+  name: varchar('name').notNull(),
+  address: varchar('address').notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+const orderItems = pgTable('order_items', {
+  id: serial('id').primaryKey(),
+  orderId: integer('order_id')
+    .references(() => orders.id)
+    .notNull(),
+  productId: integer('productId')
+    .references(() => products.id)
+    .notNull(),
+  quantity: integer('quantity').notNull(),
+  createdAt: timestamp('created_at').notNull().defaultNow(),
+  updatedAt: timestamp('updated_at').notNull().defaultNow(),
+});
+
+export { orderItems, orders,products };

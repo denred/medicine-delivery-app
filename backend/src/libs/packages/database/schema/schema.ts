@@ -1,6 +1,6 @@
-import { products } from './tables-schema.js';
+import { orderItems, orders,products } from './tables-schema.js';
 
-const schema = { products };
+const schema = { products, orderItems, orders };
 
 type DatabaseSchema = typeof schema;
 

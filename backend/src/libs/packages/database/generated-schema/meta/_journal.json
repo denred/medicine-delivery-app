@@ -15,6 +15,13 @@
       "when": 1709842845401,
       "tag": "0001_redundant_captain_marvel",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710141849519,
+      "tag": "0002_small_raider",
+      "breakpoints": true
     }
   ]
 }

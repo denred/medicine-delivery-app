@@ -5,4 +5,4 @@ import { type products } from '~/libs/packages/database/schema/tables-schema.js'
 type ProductsDatabaseModel = InferSelectModel<typeof products>;
 
 export { type ProductsDatabaseModel };
-export { type ProductEntity } from 'shared/build/index.js';
+export { type Order,type ProductEntity } from 'shared/build/index.js';

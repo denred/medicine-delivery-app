@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { OrderItem, type OrderItem as Product } from '~/libs/types/index.js';
 import { useLocalStorage } from '../use-local-storage/use-local-storage.hook';
 import { StorageKey } from '~/libs/enums';

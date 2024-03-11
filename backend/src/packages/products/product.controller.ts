@@ -7,8 +7,9 @@ import { Controller } from '~/libs/packages/controller/controller.js';
 import { HttpCode } from '~/libs/packages/http/http.js';
 import { type ILogger } from '~/libs/packages/logger/logger.js';
 
+import { type OrderService } from '../orders/orders.js';
 import { Method, ProductsApiPath } from './libs/enums/enums.js';
-import { type ProductEntity } from './libs/types/types.js';
+import { type Order, type ProductEntity } from './libs/types/types.js';
 import { type ProductService } from './product.service.js';
 
 /**
@@ -89,9 +90,16 @@ import { type ProductService } from './product.service.js';
 class ProductController extends Controller {
   private productsService: ProductService;
 
-  public constructor(logger: ILogger, productsService: ProductService) {
+  private orderService: OrderService;
+
+  public constructor(
+    logger: ILogger,
+    productsService: ProductService,
+    orderService: OrderService,
+  ) {
     super(logger, ApiPath.PRODUCTS);
     this.productsService = productsService;
+    this.orderService = orderService;
 
     this.addRoute({
       path: ProductsApiPath.$ID,
@@ -157,6 +165,17 @@ class ProductController extends Controller {
         this.getByCategory(
           request as ApiHandlerOptions<{
             params: { category: string };
+          }>,
+        ),
+    });
+
+    this.addRoute({
+      path: ProductsApiPath.ORDER,
+      method: Method.POST,
+      handler: (request) =>
+        this.makeOrder(
+          request as ApiHandlerOptions<{
+            body: Order;
           }>,
         ),
     });
@@ -411,6 +430,45 @@ class ProductController extends Controller {
     return {
       status: HttpCode.OK,
       payload: await this.productsService.getCategories(),
+    };
+  }
+
+  /**
+   * @swagger
+   * /products/:
+   *   post:
+   *     summary: Create a new product
+   *     tags:
+   *       - product
+   *     requestBody:
+   *       description: Product data to create
+   *       required: true
+   *       content:
+   *         application/json:
+   *           schema:
+   *             $ref: '#/components/schemas/Product'
+   *     responses:
+   *       '201':
+   *         description: Product created successfully
+   *         content:
+   *           application/json:
+   *             schema:
+   *               $ref: '#/components/schemas/ProductResponse'
+   *       '400':
+   *         description: Bad request
+   */
+  private async makeOrder(
+    options: ApiHandlerOptions<{
+      body: Order;
+    }>,
+  ): Promise<ApiHandlerResponse> {
+    const { body } = options;
+
+    const createdOrder = await this.orderService.create(body);
+
+    return {
+      status: HttpCode.CREATED,
+      payload: createdOrder,
     };
   }
 }

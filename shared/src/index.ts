@@ -12,12 +12,14 @@ export {
   type HttpMethod,
   Method,
 } from './libs/packages/http/http.js';
-export { type IStorage } from './libs/packages/storage/storage.js';
-export { type ValueOf } from './libs/types/types.js';
 export {
+  type CustomerInfo,
   type ErrorConstructor,
   type NullableProperties,
+  type Order,
+  type OrderItem,
   type ServerErrorDetail,
   type ValidationSchema,
+  type ValueOf,
 } from './libs/types/types.js';
 export { type ProductEntity } from './packages/products/products.js';
