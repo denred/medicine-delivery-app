@@ -1,7 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { type Order } from '~/libs/types';
-import { type Category } from '~/pages/shop/components/sidebar/sidebar';
+import { type Category } from '~/pages/shop/components/sidebar/sidebar.js';
+import { config } from '../config/config.js';
 
 interface Product {
   id: number;
@@ -12,20 +13,18 @@ interface Product {
   image: string;
   vendorCode: string;
 }
+const BASE_URL = config.ENV.API.SERVER_URL + config.ENV.API.ORIGIN_URL;
 
 export const makeOrder = createAsyncThunk<void, Order>(
   'productsApi/makeOrder',
   async (productData) => {
-    const response = await fetch(
-      'http://localhost:3001/api/v1/products/order',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(productData),
+    const response = await fetch(BASE_URL + '/products/order', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify(productData),
+    });
 
     if (!response.ok) {
       throw new Error('Failed to send data to the server');
@@ -35,7 +34,7 @@ export const makeOrder = createAsyncThunk<void, Order>(
 
 export const productsApiSlice = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:3001/api/v1/',
+    baseUrl: BASE_URL,
   }),
   reducerPath: 'productsApi',
   tagTypes: ['Products'],

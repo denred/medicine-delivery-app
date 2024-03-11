@@ -1,4 +1,4 @@
-export { ServerErrorType } from './libs/enums/enums.js';
+export { AppEnvironment,ServerErrorType } from './libs/enums/enums.js';
 export { type IConfig } from './libs/packages/config/config.js';
 export { HttpError } from './libs/packages/exceptions/exceptions.js';
 export {

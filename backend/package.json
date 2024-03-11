@@ -10,12 +10,18 @@
     "npm": "10.x.x"
   },
   "scripts": {
-    "start": "nodemon --exec \"node --loader ts-paths-esm-loader --no-warnings\" src/index.ts",
+    "start:dev": "nodemon --exec \"node --loader ts-paths-esm-loader --no-warnings\" src/index.ts",
+    "prebuild": "npm install",
+    "build:ts": "npx tsc && tsc-alias -p tsconfig.json",
+    "build:copy": "cp -r package.json build && cp -r ./src/libs/packages/database/generated-schema ./build/libs/packages/database/",
+    "build": "npm run build:ts && npm run build:copy",
     "lint:type": "npx tsc --noEmit",
     "lint:js": "npx eslint \"src/**/*.ts\"",
     "migrate:generate": "drizzle-kit generate:pg --schema=./src/libs/packages/database/schema/tables-schema.ts --out=./src/libs/packages/database/generated-schema",
     "migrate:dev": "node --loader ts-paths-esm-loader ./src/libs/packages/database/migrate-up.ts",
-    "migrate:prod": "node ./libs/packages/database/migrate-up.js"
+    "migrate:prod": "node ./libs/packages/database/migrate-up.js",
+    "prestart": "npm run migrate:prod",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "Denis Redkin",
