@@ -4,6 +4,10 @@
   "private": "true",
   "main": "index.js",
   "type": "module",
+  "engines": {
+    "node": "20.x.x",
+    "npm": "10.x.x"
+  },
   "scripts": {
     "lint:type": "npx tsc --noEmit",
     "lint:js": "npx eslint \"src/**/*.ts\"",
@@ -13,6 +17,7 @@
   "author": "Denis Redkin",
   "license": "MIT",
   "dependencies": {
-    "joi": "^17.12.2"
+    "joi": "^17.12.2",
+    "tsc-alias": "^1.8.8"
   }
 }

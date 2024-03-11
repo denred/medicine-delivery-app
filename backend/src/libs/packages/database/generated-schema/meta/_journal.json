@@ -5,22 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1709818859066,
-      "tag": "0000_special_shaman",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1709842845401,
-      "tag": "0001_redundant_captain_marvel",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1710141849519,
-      "tag": "0002_small_raider",
+      "when": 1710233949698,
+      "tag": "0000_worried_gateway",
       "breakpoints": true
     }
   ]

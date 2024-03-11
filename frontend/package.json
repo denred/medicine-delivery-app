@@ -1,10 +1,14 @@
 {
   "name": "frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": "20.x.x",
+    "npm": "10.x.x"
+  },
   "scripts": {
-    "dev": "vite",
+    "vite": "npx vite",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "prebuild": "npm install",
     "build": "npx tsc --build --clean && npx vite build",
@@ -16,6 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.2.1",
+    "@vitejs/plugin-react": "^4.2.1",
     "clsx": "^2.1.0",
     "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
@@ -27,14 +32,14 @@
     "react-toastify": "^10.0.4",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.34.0",
@@ -43,7 +48,6 @@
     "sass": "^1.71.1",
     "stylelint-config-standard-scss": "^13.0.0",
     "typescript": "^5.2.2",
-    "vite": "^5.1.4",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite": "^5.1.6"
   }
 }

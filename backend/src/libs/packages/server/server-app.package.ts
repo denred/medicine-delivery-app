@@ -58,7 +58,7 @@ class ServerApp implements IServerApp {
       '../../../public',
     );
     this.app.use(express.static(staticPath));
-    this.app.use((_request, response) => {
+    this.app.use((_request: Request, response: Response) => {
       response.sendFile('index.html', { root: staticPath });
     });
   }
