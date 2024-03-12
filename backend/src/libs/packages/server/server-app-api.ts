@@ -38,11 +38,11 @@ class ServerAppApi implements IServerAppApi {
       this.config.ENV.APP.ENVIRONMENT === AppEnvironment.DEVELOPMENT;
 
     const controllerExtension = isProduction || isDevelopment ? 'js' : 'ts';
-    const sourceDirectory = isDevelopment ? '.' : 'src';
+    const sourceDirectory = isProduction || isDevelopment ? '.' : 'src';
 
     return swaggerJsdoc({
       definition: {
-        openapi: '3.0.0',
+        openapi: '3.0.3',
         info: {
           title: 'Medicine Delivery API',
           version: `${this.version}.0.0`,

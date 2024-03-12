@@ -5,5 +5,12 @@ parserOptions:
   project:
     - ./tsconfig.json
 
+overrides:
+  - files:
+      - 'src/api/index.ts'
+    rules:
+      unicorn/prefer-export-from: 'off'
+      import/no-default-export: 'off'
+
 extends:
   - ../.eslintrc.yml

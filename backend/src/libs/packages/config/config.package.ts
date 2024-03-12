@@ -21,7 +21,7 @@ class Config implements IConfig {
     this.envSchema.load({});
     this.envSchema.validate({
       allowed: 'strict',
-      output: (message) => this.logger.info(message),
+      output: (message: string) => this.logger.info(message),
     });
 
     this.ENV = this.envSchema.getProperties();
@@ -52,7 +52,7 @@ class Config implements IConfig {
           doc: 'Port for incoming connections',
           format: Number,
           env: 'PORT',
-          default: null,
+          default: 3001,
         },
         FRONTEND_BASE_URL: {
           doc: 'Current base url of the frontend',

@@ -25,10 +25,8 @@ copy_files() {
 copy_and_clean "./backend/build" "./build/backend/"
 mkdir -p "./build/shared/"
 cp -r "./shared/build" "./build/shared/"
-mkdir -p "./build/backend/public"
-copy_and_clean "./frontend/build" "./build/public"
+mkdir -p "./public"
+copy_and_clean "./frontend/build" "./public"
 
 # Copy package files
 cp "package.json" "package-lock.json" "./build/"
-
-

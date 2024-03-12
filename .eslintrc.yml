@@ -127,12 +127,19 @@ rules:
 overrides:
   - files:
       - commitlint.config.ts
+      - backend/src/api/*.ts
     rules:
       'import/no-default-export':
         - off
   - files:
       - commitlint.config.ts
       - dangerfile.ts
+      - backend/src/api/*.ts
     rules:
       import/extensions:
         - off
+  - files:
+      - '**/backend/src/api/index.ts'
+    rules:
+      unicorn/prefer-export-from: 'off'
+      import/no-default-export: 'off'

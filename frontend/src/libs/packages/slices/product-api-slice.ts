@@ -13,7 +13,7 @@ interface Product {
   image: string;
   vendorCode: string;
 }
-const BASE_URL = config.ENV.API.SERVER_URL + config.ENV.API.ORIGIN_URL;
+const BASE_URL = config.ENV.API.ORIGIN_URL;
 
 export const makeOrder = createAsyncThunk<void, Order>(
   'productsApi/makeOrder',

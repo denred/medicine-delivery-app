@@ -1,3 +1,5 @@
-import { serverApp } from './libs/packages/server/server.js';
+import { serverInitializer } from './libs/packages/server/server.js';
 
-await serverApp.init();
+await serverInitializer();
+
+export { serverInitializer } from './libs/packages/server/server.js';

@@ -172,7 +172,7 @@ class ServerApp implements IServerApp {
     this.addRoutes(routers);
   }
 
-  public async init(): Promise<void> {
+  public async init(): Promise<Express> {
     this.logger.info('Application initialization…');
     this.database.connect();
     await this.initMiddlewares();
@@ -186,6 +186,12 @@ class ServerApp implements IServerApp {
         }.`,
       );
     });
+
+    return this.app;
+  }
+
+  public getInstance(): Express{
+    return this.app;
   }
 }
 
